@@ -1,0 +1,29 @@
+.Header {
+	background-color: #282c34;
+	text-align: center;
+	color: white;
+	display: flex;
+	align-items: center;
+}
+
+.Header {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.item {
+	vertical-align: middle;
+	margin: auto;
+	font-size: 34px;
+}
+
+.logo {
+	margin: 0px 0px 0px 20px;
+	width: 50px;
+}
+
+.Header span {
+	margin: 0px 20px 0px 0px;
+}

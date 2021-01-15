@@ -1,0 +1,13 @@
+.Content {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.Content {
+	text-align: center;
+	background-color: #3f434d;
+	min-height: 100%;
+	color: rgb(175, 178, 209);
+}
