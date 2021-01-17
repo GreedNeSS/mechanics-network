@@ -1,0 +1,11 @@
+.MessageItems {
+	text-align: center;
+	margin: 10px 10px 10px 10px;
+	width: 100%;
+}
+
+.message {
+	margin: 10px 0px 10px 0px;
+	color: rgb(192, 167, 167);
+	font-size: 18px;
+}

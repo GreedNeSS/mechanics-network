@@ -6,13 +6,13 @@ import Sidebar from './components/Sidebar/Sidebar';
 import { BrowserRouter } from 'react-router-dom';
 
 
-const App = () => {
+const App = (props) => {
 	return (
 		<BrowserRouter>
 			<div className="App">
 				<Header />
 				<Sidebar />
-				<Content />
+				<Content state={props.state} />
 			</div>
 		</BrowserRouter>
 	);

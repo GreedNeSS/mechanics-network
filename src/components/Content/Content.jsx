@@ -1,23 +1,25 @@
 import css from "./Content.module.css";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Main from "./Main/Main";
 import Articles from "./Articles/Articles";
 import Contacts from "./Contacts/Contacts";
 import News from "./News/News";
 import Article from "./Article/Article";
+import Messages from "./Messages/Messages";
 
 
-function Content() {
+function Content(props) {
 	return (
 
 		<div className={css.Content}>
-			<Switch>
-				<Route component={Main} path='/' exact />
-				<Route component={Articles} path='/Articles' />
-				<Route component={News} path='/News' exact />
-				<Route component={Contacts} path='/Contacts' />
-				<Route component={Article} path='/News/*' />
-			</Switch>
+
+			<Route component={Main} path='/' exact />
+			<Route render={() => <Articles articles={props.state.articles} />} path='/Articles' />
+			<Route render={() => <News news={props.state.news} />} path='/News' exact />
+			<Route component={Contacts} path='/Contacts' />
+			<Route component={Article} path='/News/*' />
+			<Route render={() => <Messages messages={props.state.messages} />} path='/Messages' />
+
 		</div>
 
 	)

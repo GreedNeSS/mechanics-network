@@ -1,6 +1,6 @@
 import css from "./Main.module.css";
-import IntroImage from "../Content_Header/Intro_img";
-import Title from "../Content_Header/Title";
+import IntroImage from "./Content_Header/Intro_img";
+import Title from "./Content_Header/Title";
 import introImg from "../../../img/lift-hole.png";
 
 

@@ -1,0 +1,21 @@
+.Dialogs {
+	margin: 10px 10px 10px 10px;
+	min-width: 20%;
+	max-width: 20%;
+}
+
+.dialog a {
+	color: wheat;
+	font-size: 22px;
+	display: block;
+	border-radius: 15px;
+	box-shadow: 0 0 30px rgb(47, 8, 83);
+}
+
+.dialog {
+	margin: 10px 3% 10px 3%;
+}
+
+.active {
+	background-color: rgb(85, 21, 145);
+}
