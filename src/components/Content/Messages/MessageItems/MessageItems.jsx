@@ -24,22 +24,30 @@ function MessageItems(props) {
 
 	let newMessageElement = React.createRef();
 
-	let addMessage = () => {
-		let text = props.newTextMessages;
-		props.addMessage(text);
+	let addMessageItem = () => {
+		props.dispatch({ type: 'ADD-MESSAGE' });
 	}
 
 	let newMyMessage = () => {
 		let text = newMessageElement.current.value;
-		props.writeMessage(text);
+		let action = {
+			type: 'WRITE-MESSAGE',
+			text: text
+		};
+
+		props.dispatch(action);
 	}
 
 	return (
 		<div className={css.MessageItems}>
 			{messages}
 			<div className={css.addMessage}>
-				<textarea rows='1' onChange={newMyMessage} value={props.newTextMessages} ref={newMessageElement} className={css.newMess} />
-				<button className={css.button} onClick={addMessage}>Отправить</button>
+				<textarea rows='1'
+					onChange={newMyMessage}
+					value={props.newTextMessages}
+					ref={newMessageElement}
+					className={css.newMess} />
+				<button className={css.button} onClick={addMessageItem}>Отправить</button>
 			</div>
 		</div>
 	)

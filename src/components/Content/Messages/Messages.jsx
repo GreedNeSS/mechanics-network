@@ -9,9 +9,8 @@ function Messages(props) {
 		<div className={css.Messages}>
 			<Dialogs dialogs={props.messages.dialogs} />
 			<MessageItems messageItems={props.messages.messageItems}
-				addMessage={props.addMessage}
-				writeMessage={props.writeMessage}
-				newTextMessages={props.messages.newTextMessages} />
+				newTextMessages={props.messages.newTextMessages}
+				dispatch={props.dispatch} />
 		</div>
 	)
 }
