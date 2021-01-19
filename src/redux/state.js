@@ -1,3 +1,5 @@
+import rerenderEntireTree from "../render";
+
 let state = {
 	news: [
 		{
@@ -106,9 +108,46 @@ let state = {
 			},
 		],
 		messageItems: [
-			'Hello', 'Hi', 'You from', 'From russia'
+			{
+				name: false,
+				message: 'Hello'
+			},
+			{
+				name: 'Roman',
+				message: 'Hi'
+			},
+			{
+				name: false,
+				message: 'You from'
+			},
+			{
+				name: 'Roman',
+				message: 'From russia'
+			},
+			{
+				name: false,
+				message: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam cum maxime omnis neque ad? Consequuntur necessitatibus accusantium, placeat pariatur rem, distinctio eligendi quia minima natus unde, dicta aspernatur! Consectetur, debitis!'
+			}
 		],
+		newTextMessages: ''
 	}
 };
 
+
+const addMessage = () => {
+	const message = {
+		name: false,
+		message: state.messages.newTextMessages
+	}
+	state.messages.messageItems.push(message);
+	state.messages.newTextMessages = '';
+	rerenderEntireTree(state, addMessage, writeMessage);
+}
+
+const writeMessage = (text) => {
+	state.messages.newTextMessages = text;
+	rerenderEntireTree(state, addMessage, writeMessage);
+}
+
+export { addMessage, writeMessage };
 export default state;

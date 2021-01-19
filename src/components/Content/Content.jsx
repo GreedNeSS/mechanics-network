@@ -18,7 +18,9 @@ function Content(props) {
 			<Route render={() => <News news={props.state.news} />} path='/News' exact />
 			<Route component={Contacts} path='/Contacts' />
 			<Route component={Article} path='/News/*' />
-			<Route render={() => <Messages messages={props.state.messages} />} path='/Messages' />
+			<Route render={() => <Messages messages={props.state.messages}
+				addMessage={props.addMessage}
+				writeMessage={props.writeMessage} />} path='/Messages' />
 
 		</div>
 

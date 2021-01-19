@@ -12,7 +12,9 @@ const App = (props) => {
 			<div className="App">
 				<Header />
 				<Sidebar />
-				<Content state={props.state} />
+				<Content state={props.state}
+					addMessage={props.addMessage}
+					writeMessage={props.writeMessage} />
 			</div>
 		</BrowserRouter>
 	);

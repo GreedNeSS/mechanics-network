@@ -2,10 +2,61 @@
 	text-align: center;
 	margin: 10px 10px 10px 10px;
 	width: 100%;
+	position: relative;
 }
 
 .message {
+	text-align: left;
+	line-height: 28px;
 	margin: 10px 0px 10px 0px;
+	padding: 0px 20% 0px 3%;
 	color: rgb(192, 167, 167);
 	font-size: 18px;
+	border-radius: 15px;
+	box-shadow: 0 0 30px rgb(47, 8, 83);
+}
+
+.myMessage {
+	text-align: right;
+	line-height: 28px;
+	margin: 10px 0px 10px 0px;
+	padding: 0px 3% 0px 20%;
+	color: rgb(134, 140, 194);
+	font-size: 18px;
+	border-radius: 15px;
+	box-shadow: 0 0 30px rgb(47, 8, 83);
+	background: #282c34;
+}
+
+.name {
+	color: rgb(75, 194, 148);
+}
+
+.newMess {
+	display: block;
+	width: 80%;
+	background-color: rgb(60, 39, 99);
+	color: rgb(75, 194, 148);
+	padding: 10px 20px 10px 20px;
+	font-size: 18px;
+	line-height: 28px;
+	resize: none;
+}
+
+.button {
+	width: 20%;
+	font-size: 18px;
+	line-height: 28px;
+	background: rgb(29, 29, 114);
+	color: rgb(75, 194, 148);
+}
+
+.addMessage {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	display: flex;
+	width: 60%;
+	border-radius: 20px;
+	overflow: hidden;
 }

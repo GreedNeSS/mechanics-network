@@ -8,7 +8,10 @@ function Messages(props) {
 	return (
 		<div className={css.Messages}>
 			<Dialogs dialogs={props.messages.dialogs} />
-			<MessageItems messageItems={props.messages.messageItems} />
+			<MessageItems messageItems={props.messages.messageItems}
+				addMessage={props.addMessage}
+				writeMessage={props.writeMessage}
+				newTextMessages={props.messages.newTextMessages} />
 		</div>
 	)
 }

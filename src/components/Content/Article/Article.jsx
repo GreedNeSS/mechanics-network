@@ -8,13 +8,6 @@ function Article(props) {
 		props = props.location.props
 	}
 
-	let coments;
-	if (props.class) {
-		coments = css[props.class];
-	} else {
-		coments = false;
-	}
-
 	let wraper;
 	let image;
 	if (props.image) {
@@ -25,10 +18,28 @@ function Article(props) {
 		wraper = false;
 	}
 
+	let coments;
+	if (props.class) {
 
+		coments = css[props.class];
+
+		return (
+			<div className={`${css.Article} ${(coments) ? coments : null}`}>
+				<h2 className={css.title}>
+					{props.title}
+				</h2>
+				<div className={wraper}>
+					<img src={props.image} className={image} alt="" />
+				</div>
+				<div className={css.text}>
+					{props.text}
+				</div>
+			</div >
+		)
+	}
 
 	return (
-		<div className={`${css.Article} ${coments}`}>
+		<div className={css.Article}>
 			<h2 className={css.title}>
 				{props.title}
 			</h2>
