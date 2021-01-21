@@ -1,3 +1,5 @@
+import messagesReduser from "./messages-reduser";
+
 
 let store = {
 	_state: {
@@ -146,23 +148,14 @@ let store = {
 	},
 
 	dispatch(action) {
-		if (action.type === 'ADD-MESSAGE') {
-			const message = {
-				name: false,
-				message: this._state.messages.newTextMessages
-			}
-			this._state.messages.messageItems.push(message);
-			this._state.messages.newTextMessages = '';
-			this._observer(this);
-		}
-		else if (action.type === 'WRITE-MESSAGE') {
-			this._state.messages.newTextMessages = action.text;
-			this._observer(this);
-		}
+
+		this._state.messages = messagesReduser(this._state.messages, action);
+
+		this._observer(this);
+
 	},
 };
 
 store.dispatch = store.dispatch.bind(store);
-
 
 export default store;
