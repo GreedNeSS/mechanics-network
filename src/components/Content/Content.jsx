@@ -19,7 +19,7 @@ function Content(props) {
 			<Route component={Contacts} path='/Contacts' />
 			<Route component={Article} path='/News/*' />
 			<Route render={() =>
-				<MessagesContainer store={props.store} />} path='/Messages' />
+				<MessagesContainer />} path='/Messages' />
 
 		</div>
 
