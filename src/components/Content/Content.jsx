@@ -1,11 +1,11 @@
 import css from "./Content.module.css";
 import { Route } from "react-router-dom";
 import Main from "./Main/Main";
-import Articles from "./Articles/Articles";
+import ArticlesContainer from "./Articles/ArticlesContainer";
 import Contacts from "./Contacts/Contacts";
-import News from "./News/News";
 import Article from "./Article/Article";
-import Messages from "./Messages/Messages";
+import NewsContainer from "./News/NewsContainer";
+import MessagesContainer from "./Messages/MessagesContainer";
 
 
 function Content(props) {
@@ -14,13 +14,12 @@ function Content(props) {
 		<div className={css.Content}>
 
 			<Route component={Main} path='/' exact />
-			<Route render={() => <Articles articles={props.store.getState().articles} />} path='/Articles' />
-			<Route render={() => <News news={props.store.getState().news} />} path='/News' exact />
+			<Route render={() => <ArticlesContainer store={props.store} />} path='/Articles' />
+			<Route render={() => <NewsContainer store={props.store} />} path='/News' exact />
 			<Route component={Contacts} path='/Contacts' />
 			<Route component={Article} path='/News/*' />
 			<Route render={() =>
-				<Messages messages={props.store.getState().messages}
-					dispatch={props.store.dispatch} />} path='/Messages' />
+				<MessagesContainer store={props.store} />} path='/Messages' />
 
 		</div>
 

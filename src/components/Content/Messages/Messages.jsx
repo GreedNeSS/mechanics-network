@@ -7,10 +7,12 @@ import css from "./Messages.module.css";
 function Messages(props) {
 	return (
 		<div className={css.Messages}>
-			<Dialogs dialogs={props.messages.dialogs} />
-			<MessageItems messageItems={props.messages.messageItems}
-				newTextMessages={props.messages.newTextMessages}
-				dispatch={props.dispatch} />
+			<Dialogs dialogs={props.dialogs} />
+			<MessageItems messageItems={props.messageItems}
+				newTextMessages={props.newTextMessages}
+				onKeyPress={props.onKeyPress}
+				onChangeMessage={props.onChangeMessage}
+				addMessage={props.addMessage} />
 		</div>
 	)
 }

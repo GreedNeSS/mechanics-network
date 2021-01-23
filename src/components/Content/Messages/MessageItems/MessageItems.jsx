@@ -1,6 +1,5 @@
 import css from "./MessageItems.module.css";
 import React from "react";
-import { addMessageActionCreator, writeMessageActionCreator } from "../../../../redux/messages-reduser";
 
 
 function MessageItems(props) {
@@ -26,24 +25,15 @@ function MessageItems(props) {
 	// let newMessageElement = React.createRef();
 
 	let addMessageItem = () => {
-		props.dispatch(addMessageActionCreator());
+		props.addMessage();
 	}
 
-	let newMyMessage = (event) => {
-		// let text = newMessageElement.current.value; //! можно и через реферальную ссылку, но лучше через эвент
-
-		let text = event.target.value;
-		let action = writeMessageActionCreator(text);
-
-		props.dispatch(action);
+	let onChangeMyMessage = (event) => {
+		props.onChangeMessage(event);
 	}
 
 	let handleKeyPress = (event) => {
-		if (event.key === 'Enter') {
-			props.dispatch(addMessageActionCreator());
-
-			event.preventDefault();
-		}
+		props.onKeyPress(event);
 	}
 
 	return (
@@ -52,7 +42,7 @@ function MessageItems(props) {
 			<div className={css.addMessage}>
 				<textarea rows='1'
 					onKeyPress={handleKeyPress}
-					onChange={newMyMessage}
+					onChange={onChangeMyMessage}
 					value={props.newTextMessages}
 					// ref={newMessageElement} //! можно и через реферальную ссылку, но лучше через эвент
 					className={css.newMess} />
