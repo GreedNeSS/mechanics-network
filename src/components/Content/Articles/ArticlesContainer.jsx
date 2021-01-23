@@ -1,8 +1,13 @@
+import { connect } from "react-redux";
 import Articles from "./Articles";
 
 
-function ArticlesContainer(props) {
-	return <Articles articles={props.store.getState().articles} />
+const mapStateToProps = (state) => {
+	return {
+		articles: state.articles
+	}
 }
+
+const ArticlesContainer = connect(mapStateToProps)(Articles);
 
 export default ArticlesContainer;

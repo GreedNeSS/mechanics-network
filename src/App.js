@@ -12,7 +12,7 @@ const App = (props) => {
 			<div className="App">
 				<Header />
 				<Sidebar />
-				<Content store={props.store} />
+				<Content />
 			</div>
 		</BrowserRouter>
 	);

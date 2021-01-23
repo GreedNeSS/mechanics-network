@@ -62,21 +62,24 @@ let initialState = {
 const messagesReduser = (state = initialState, action) => {
 
 	switch (action.type) {
-		case ADD_MESSAGE:
+		case ADD_MESSAGE: {
 			const message = {
 				name: false,
 				message: state.newTextMessages
 			}
-			state.messageItems.push(message);
-			state.newTextMessages = '';
 
-			return state;
-
-		case WRITE_MESSAGE:
-			state.newTextMessages = action.text;
-
-			return state;
-
+			return {
+				...state,
+				messageItems: [...state.messageItems, message],
+				newTextMessages: ''
+			};
+		}
+		case WRITE_MESSAGE: {
+			return {
+				...state,
+				newTextMessages: action.text
+			}
+		}
 		default:
 			return state;
 	}

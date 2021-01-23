@@ -1,7 +1,13 @@
+import { connect } from "react-redux";
 import News from "./News";
 
-function NewsContainer(props) {
-	return <News news={props.store.getState().news} />
+
+const mapStateToProps = (state) => {
+	return {
+		news: state.news
+	}
 }
+
+const NewsContainer = connect(mapStateToProps)(News);
 
 export default NewsContainer;

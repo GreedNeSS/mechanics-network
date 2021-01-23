@@ -14,8 +14,8 @@ function Content(props) {
 		<div className={css.Content}>
 
 			<Route component={Main} path='/' exact />
-			<Route render={() => <ArticlesContainer store={props.store} />} path='/Articles' />
-			<Route render={() => <NewsContainer store={props.store} />} path='/News' exact />
+			<Route render={() => <ArticlesContainer />} path='/Articles' />
+			<Route render={() => <NewsContainer />} path='/News' exact />
 			<Route component={Contacts} path='/Contacts' />
 			<Route component={Article} path='/News/*' />
 			<Route render={() =>
