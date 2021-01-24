@@ -6,6 +6,7 @@ import Contacts from "./Contacts/Contacts";
 import Article from "./Article/Article";
 import NewsContainer from "./News/NewsContainer";
 import MessagesContainer from "./Messages/MessagesContainer";
+import UsersContainer from "./Users/UsersContainer";
 
 
 function Content(props) {
@@ -20,6 +21,7 @@ function Content(props) {
 			<Route component={Article} path='/News/*' />
 			<Route render={() =>
 				<MessagesContainer />} path='/Messages' />
+			<Route render={() => <UsersContainer />} path='/Users' />
 
 		</div>
 
