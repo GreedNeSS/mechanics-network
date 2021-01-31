@@ -2,9 +2,16 @@ import { NavLink } from "react-router-dom";
 import css from "./Sidebar.module.css";
 
 function NLink(props) {
+	if (props.exact) {
+		return (
+			<nav className={css.Sidebar_item}>
+				<NavLink key={props.value} to={props.path} activeClassName={css.active} exact>{props.value}</NavLink>
+			</nav>
+		)
+	}
 	return (
 		<nav className={css.Sidebar_item}>
-			<NavLink key={props.value} to={props.path} activeClassName={css.active} exact={props.exact}>{props.value}</NavLink>
+			<NavLink key={props.value} to={props.path} activeClassName={css.active}>{props.value}</NavLink>
 		</nav>
 	)
 }
@@ -14,11 +21,11 @@ function Sidebar() {
 
 		<div className={css.Sidebar}>
 			<NLink path='/' value=' Главная ' exact='true' />
-			<NLink path='/Users' value=' Пользователи ' />
-			<NLink path='/Messages' value=' Сообщения ' />
-			<NLink path='/Articles' value=' Статьи ' />
-			<NLink path='/News' value=' Новости ' />
-			<NLink path='/Contacts' value=' Контакты ' />
+			<NLink path='/users' value=' Пользователи ' />
+			<NLink path='/messages' value=' Сообщения ' />
+			<NLink path='/articles' value=' Статьи ' />
+			<NLink path='/news' value=' Новости ' />
+			<NLink path='/contacts' value=' Контакты ' />
 		</div>
 
 	)

@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import css from "./NewsItem.module.css";
 
 function NewsItem(props) {
-
 	let coments;
 	if (props.class) {
 		coments = css[props.class];
