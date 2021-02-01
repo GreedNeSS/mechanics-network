@@ -7,6 +7,7 @@ import Article from "./Article/Article";
 import NewsContainer from "./News/NewsContainer";
 import MessagesContainer from "./Messages/MessagesContainer";
 import UsersContainer from "./Users/UsersContainer";
+import ProfileContainer from "./Profile/ProfileContainer";
 
 
 function Content() {
@@ -22,6 +23,7 @@ function Content() {
 			<Route render={() =>
 				<MessagesContainer />} path='/messages' />
 			<Route render={() => <UsersContainer />} path='/users' />
+			<Route render={() => <ProfileContainer />} path='/profile' />
 
 		</div>
 

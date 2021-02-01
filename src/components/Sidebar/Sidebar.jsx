@@ -21,6 +21,7 @@ function Sidebar() {
 
 		<div className={css.Sidebar}>
 			<NLink path='/' value=' Главная ' exact='true' />
+			<NLink path='/profile' value=' Профиль ' />
 			<NLink path='/users' value=' Пользователи ' />
 			<NLink path='/messages' value=' Сообщения ' />
 			<NLink path='/articles' value=' Статьи ' />
