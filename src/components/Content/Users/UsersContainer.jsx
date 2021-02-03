@@ -22,10 +22,6 @@ class UsersAjaxContainer extends React.Component {
 		console.log(this.props);
 	}
 
-	componentDidUpdate = () => {
-		console.log(this.props);
-	}
-
 	onPageChange = (page) => {
 		this.props.toggleIsFetching(true);
 		this.props.setCurrentPage(page);

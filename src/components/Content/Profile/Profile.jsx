@@ -1,5 +1,6 @@
 import Preloader from "../../commons/Preloader";
 import ProfileInfo from "./ProfileInfo/ProfileInfo"
+import ProfilePosts from "./ProfilePosts/ProfilePosts";
 
 const Profile = (props) => {
 
@@ -10,6 +11,12 @@ const Profile = (props) => {
 	return (
 		<div>
 			<ProfileInfo profile={props.profile} />
+			<ProfilePosts
+				posts={props.posts}
+				addPost={props.addPost}
+				writePost={props.writePost}
+				newTextPost={props.newTextPost}
+			/>
 		</div>
 	)
 }

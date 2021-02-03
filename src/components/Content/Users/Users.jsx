@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import userIcon from "../../../img/user icon.png";
 import css from "./Users.module.css";
 
@@ -31,12 +32,14 @@ const Users = (props) => {
 				{props.users.map((u) => {
 					return (
 						<div key={u.id} className={css.wraperUser} >
-							<div className={css.wraperImage} >
-								<img className={css.avatar} src={u.photos.small != null ?
-									u.photos.small :
-									userIcon
-								} alt="Аватар" />
-							</div>
+							<NavLink to={'/profile/' + u.id}>
+								<div className={css.wraperImage} >
+									<img className={css.avatar} src={u.photos.small != null ?
+										u.photos.small :
+										userIcon
+									} alt="Аватар" />
+								</div>
+							</NavLink>
 							<div className={css.usersInfo} >
 								<div className={css.item}>
 									Имя: {u.name}

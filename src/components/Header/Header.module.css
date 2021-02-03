@@ -24,6 +24,11 @@
 	width: 50px;
 }
 
-.Header span {
+.Header div {
 	margin: 0px 20px 0px 0px;
+	color: azure;
+}
+
+a {
+	color: azure;
 }

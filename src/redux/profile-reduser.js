@@ -4,7 +4,7 @@ const SET_PROFILE = 'SET_PROFILE';
 
 export const writePost = (text) => ({
 	type: WRITE_POST,
-	text: text,
+	text,
 });
 
 export const setProfile = (profile) => ({
@@ -54,7 +54,7 @@ const profileReduser = (state = initialState, action) => {
 		case WRITE_POST: {
 			return {
 				...state,
-				newTextMessages: action.text
+				newTextPost: action.text
 			}
 		}
 

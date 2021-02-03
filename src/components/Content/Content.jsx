@@ -23,7 +23,7 @@ function Content() {
 			<Route render={() =>
 				<MessagesContainer />} path='/messages' />
 			<Route render={() => <UsersContainer />} path='/users' />
-			<Route render={() => <ProfileContainer />} path='/profile' />
+			<Route render={() => <ProfileContainer />} path='/profile/:userId?' />
 
 		</div>
 

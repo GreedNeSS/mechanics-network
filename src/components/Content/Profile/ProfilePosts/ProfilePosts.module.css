@@ -1,0 +1,11 @@
+.textarea {
+	font-size: 26px;
+}
+
+.button {
+	width: 20%;
+	font-size: 18px;
+	line-height: 28px;
+	background: rgb(29, 29, 114);
+	color: rgb(75, 194, 148);
+}
