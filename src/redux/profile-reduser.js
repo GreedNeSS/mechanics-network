@@ -1,3 +1,5 @@
+import { profileAPI } from "../API/API";
+
 const WRITE_POST = 'WRITE_POST';
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
@@ -6,13 +8,19 @@ export const writePost = (text) => ({
 	type: WRITE_POST,
 	text,
 });
-
 export const setProfile = (profile) => ({
 	type: SET_PROFILE,
 	profile,
 });
-
 export const addPost = () => ({ type: ADD_POST });
+
+export const getProfile = (userId, ownId) => (dispatch) => {
+	let id = userId || ownId;
+	profileAPI.getProfile(id)
+		.then(response => {
+			dispatch(setProfile(response));
+		});
+}
 
 
 let initialState = {

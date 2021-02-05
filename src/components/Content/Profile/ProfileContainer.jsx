@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
-import { addPost, writePost, setProfile } from "../../../redux/profile-reduser";
+import { addPost, writePost, getProfile } from "../../../redux/profile-reduser";
 import Profile from "./Profile";
 import React from "react";
-import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 
@@ -10,13 +9,7 @@ class ProfileAjaxContainer extends React.Component {
 	debugger
 
 	componentDidMount = () => {
-		let userId = this.props.match.params.userId || this.props.profileId;
-
-		axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-			.then(response => {
-				this.props.setProfile(response.data);
-			})
-
+		this.props.getProfile(this.props.match.params.userId, this.props.profileId);
 	}
 
 	render() {
@@ -35,4 +28,4 @@ let mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { addPost, writePost, setProfile })(ProfileContainer);
+export default connect(mapStateToProps, { addPost, writePost, getProfile })(ProfileContainer);

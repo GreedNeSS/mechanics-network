@@ -1,35 +1,20 @@
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow, toggleIsFollowingProgress } from "../../../redux/users-reduser";
+import { setFollow, setUnfollow, getUsers } from "../../../redux/users-reduser";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../../commons/Preloader";
-import { usersAPI } from "../../../API/API";
-
 
 
 class UsersAjaxContainer extends React.Component {
 
 	componentDidMount = () => {
 		if (this.props.users.length === 0) {
-			this.props.toggleIsFetching(true);
-			usersAPI.getUsersPage(this.props.currentPage, this.props.pageSize)
-				.then(response => {
-					this.props.toggleIsFetching(false);
-					this.props.setUsers(response.items);
-					this.props.setTotalUsersCount(response.totalCount);
-				})
+			this.props.getUsers(this.props.currentPage, this.props.pageSize);
 		}
 	}
 
 	onPageChange = (page) => {
-		this.props.toggleIsFetching(true);
-		this.props.setCurrentPage(page);
-		usersAPI.getUsersPage(page, this.props.pageSize)
-			.then(response => {
-				this.props.toggleIsFetching(false);
-				this.props.setUsers(response.items);
-				this.props.setTotalUsersCount(response.totalCount);
-			})
+		this.props.getUsers(page, this.props.pageSize);
 	}
 
 	render() {
@@ -44,11 +29,10 @@ class UsersAjaxContainer extends React.Component {
 					pageSize={this.props.pageSize}
 					currentPage={this.props.currentPage}
 					onPageChange={this.onPageChange}
-					unfollow={this.props.unfollow}
-					follow={this.props.follow}
+					setUnfollow={this.props.setUnfollow}
+					setFollow={this.props.setFollow}
 					users={this.props.users}
 					isFollowingProgress={this.props.isFollowingProgress}
-					toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
 				/>
 			</>
 		)
@@ -62,20 +46,15 @@ let mapStateToProps = (state) => {
 		totalCount: state.users.totalCount,
 		currentPage: state.users.currentPage,
 		pageSize: state.users.pageSize,
-		isFetching: state.users.isFetching,
 		isFollowingProgress: state.users.isFollowingProgress,
 	}
 }
 
 
 const UsersContainer = connect(mapStateToProps, {
-	follow,
-	unfollow,
-	setUsers,
-	setTotalUsersCount,
-	setCurrentPage,
-	toggleIsFetching,
-	toggleIsFollowingProgress,
+	setFollow,
+	setUnfollow,
+	getUsers,
 })(UsersAjaxContainer);
 
 export default UsersContainer;

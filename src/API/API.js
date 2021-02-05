@@ -35,3 +35,11 @@ export const authAPI = {
 		return response.data;
 	}
 }
+
+export const profileAPI = {
+
+	async getProfile(userId) {
+		const response = await inctance.get('profile/' + userId);
+		return response.data;
+	}
+}
