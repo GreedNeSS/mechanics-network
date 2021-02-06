@@ -8,6 +8,7 @@ import NewsContainer from "./News/NewsContainer";
 import MessagesContainer from "./Messages/MessagesContainer";
 import UsersContainer from "./Users/UsersContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
+import Login from "./Login/Login";
 
 
 function Content() {
@@ -24,6 +25,7 @@ function Content() {
 				<MessagesContainer />} path='/messages' />
 			<Route render={() => <UsersContainer />} path='/users' />
 			<Route render={() => <ProfileContainer />} path='/profile/:userId?' />
+			<Route render={() => <Login />} path='/login' />
 
 		</div>
 

@@ -3,9 +3,11 @@ import { addPost, writePost, getProfile } from "../../../redux/profile-reduser";
 import Profile from "./Profile";
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { withAuthRedirect } from "../../../hoc/AuthRedirect";
+import { compose } from "redux";
 
 
-class ProfileAjaxContainer extends React.Component {
+class ProfilContainer extends React.Component {
 	debugger
 
 	componentDidMount = () => {
@@ -17,15 +19,18 @@ class ProfileAjaxContainer extends React.Component {
 	}
 }
 
-const ProfileContainer = withRouter(ProfileAjaxContainer);
-
 let mapStateToProps = (state) => {
 	return {
 		profileId: state.profile.profileId,
 		profile: state.profile.profile,
 		newTextPost: state.profile.newTextPost,
 		posts: state.profile.posts,
+		isAuth: state.auth.isAuth,
 	}
 }
 
-export default connect(mapStateToProps, { addPost, writePost, getProfile })(ProfileContainer);
+export default compose(
+	connect(mapStateToProps, { addPost, writePost, getProfile }),
+	withRouter,
+	withAuthRedirect
+)(ProfilContainer);

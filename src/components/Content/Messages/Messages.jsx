@@ -5,6 +5,7 @@ import css from "./Messages.module.css";
 
 
 function Messages(props) {
+
 	return (
 		<div className={css.Messages}>
 			<Dialogs dialogs={props.dialogs} />

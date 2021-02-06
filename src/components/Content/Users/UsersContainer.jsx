@@ -3,9 +3,11 @@ import { setFollow, setUnfollow, getUsers } from "../../../redux/users-reduser";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../../commons/Preloader";
+import { withAuthRedirect } from "../../../hoc/AuthRedirect";
+import { compose } from "redux";
 
 
-class UsersAjaxContainer extends React.Component {
+class UsersContainer extends React.Component {
 
 	componentDidMount = () => {
 		if (this.props.users.length === 0) {
@@ -50,11 +52,7 @@ let mapStateToProps = (state) => {
 	}
 }
 
-
-const UsersContainer = connect(mapStateToProps, {
-	setFollow,
-	setUnfollow,
-	getUsers,
-})(UsersAjaxContainer);
-
-export default UsersContainer;
+export default compose(
+	connect(mapStateToProps, { setFollow, setUnfollow, getUsers }),
+	withAuthRedirect,
+)(UsersContainer);
