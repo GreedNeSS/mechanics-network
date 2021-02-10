@@ -10,12 +10,14 @@ const Profile = (props) => {
 
 	return (
 		<div>
-			<ProfileInfo profile={props.profile} />
+			<ProfileInfo
+				profile={props.profile}
+				profileStatus={props.profileStatus}
+				updateStatus={props.updateStatus}
+			/>
 			<ProfilePosts
 				posts={props.posts}
 				addPost={props.addPost}
-				writePost={props.writePost}
-				newTextPost={props.newTextPost}
 			/>
 		</div>
 	)

@@ -1,6 +1,5 @@
 import './App.css';
 import Content from './components/Content/Content';
-// import Footer from './components/Footer';
 import Sidebar from './components/Sidebar/Sidebar';
 import HeaderContainer from './components/Header/HeaderContainer';
 

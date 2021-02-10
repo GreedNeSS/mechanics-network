@@ -1,3 +1,5 @@
+import ProfileStatus from "./ProfileStatus"
+
 const ProfileInfo = (props) => {
 	return (
 		<div>
@@ -8,7 +10,13 @@ const ProfileInfo = (props) => {
 				Полное имя: {props.profile.fullName}
 			</div>
 			<div>
-				О Себе: {props.profile.aboutMe}
+				Обо мне: {props.profile.aboutMe}
+			</div>
+			<div>
+				<ProfileStatus
+					status={props.profileStatus}
+					updateStatus={props.updateStatus}
+				/>
 			</div>
 			<div>
 				Контакты:

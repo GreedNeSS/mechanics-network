@@ -34,8 +34,8 @@ let initialState = [
 	},
 ];
 
-let newsReduser = (state = initialState, action) => {
+let newsReducer = (state = initialState, action) => {
 	return state;
 }
 
-export default newsReduser;
+export default newsReducer;

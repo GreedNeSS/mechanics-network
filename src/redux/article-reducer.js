@@ -43,8 +43,8 @@ let initialState = [
 	}
 ];
 
-let articleReduser = (state = initialState, action) => {
+let articleReducer = (state = initialState, action) => {
 	return state;
 }
 
-export default articleReduser;
+export default articleReducer;

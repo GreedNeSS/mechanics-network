@@ -41,5 +41,15 @@ export const profileAPI = {
 	async getProfile(userId) {
 		const response = await inctance.get('profile/' + userId);
 		return response.data;
-	}
+	},
+
+	async getStatus(userId) {
+		const response = await inctance.get('profile/status/' + userId);
+		return response.data;
+	},
+
+	async setProfileStatus(status) {
+		const response = await inctance.put('profile/status/', { status });
+		return response.data;
+	},
 }

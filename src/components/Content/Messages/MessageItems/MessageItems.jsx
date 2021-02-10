@@ -1,5 +1,7 @@
 import css from "./MessageItems.module.css";
 import React from "react";
+import MessagesForm from "./MessagesForm";
+import { clearFields } from "redux-form";
 
 
 function MessageItems(props) {
@@ -22,32 +24,15 @@ function MessageItems(props) {
 		)
 	})
 
-	// let newMessageElement = React.createRef();
-
-	let addMessageItem = () => {
-		props.addMessage();
-	}
-
-	let onChangeMyMessage = (event) => {
-		props.onChangeMessage(event);
-	}
-
-	let handleKeyPress = (event) => {
-		props.onKeyPress(event);
+	let addMessageItem = (data) => {
+		props.addMessage(data.newMessageText);
+		clearFields('messages', true, true, ...['newMessageText']);
 	}
 
 	return (
 		<div className={css.MessageItems}>
 			{messages}
-			<div className={css.addMessage}>
-				<textarea rows='1'
-					onKeyPress={handleKeyPress}
-					onChange={onChangeMyMessage}
-					value={props.newTextMessages}
-					// ref={newMessageElement} //! можно и через реферальную ссылку, но лучше через эвент
-					className={css.newMess} />
-				<button className={css.button} onClick={addMessageItem}>Отправить</button>
-			</div>
+			<MessagesForm onSubmit={addMessageItem} />
 		</div>
 	)
 }

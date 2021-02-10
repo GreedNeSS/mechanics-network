@@ -1,12 +1,6 @@
-const WRITE_MESSAGE = 'WRITE-MESSAGE';
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
-export const writeMessageActionCreator = (text) => ({
-	type: WRITE_MESSAGE,
-	text: text,
-});
-
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE });
+export const addMessage = (text) => ({ type: ADD_MESSAGE, text });
 
 
 let initialState = {
@@ -56,29 +50,21 @@ let initialState = {
 			message: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam cum maxime omnis neque ad? Consequuntur necessitatibus accusantium, placeat pariatur rem, distinctio eligendi quia minima natus unde, dicta aspernatur! Consectetur, debitis!'
 		}
 	],
-	newTextMessages: ''
 };
 
-const messagesReduser = (state = initialState, action) => {
+const messagesReducer = (state = initialState, action) => {
 
 	switch (action.type) {
 		case ADD_MESSAGE: {
 			const message = {
 				name: false,
-				message: state.newTextMessages
+				message: action.text
 			}
 
 			return {
 				...state,
 				messageItems: [...state.messageItems, message],
-				newTextMessages: ''
 			};
-		}
-		case WRITE_MESSAGE: {
-			return {
-				...state,
-				newTextMessages: action.text
-			}
 		}
 		default:
 			return state;
@@ -86,5 +72,5 @@ const messagesReduser = (state = initialState, action) => {
 
 }
 
-export default messagesReduser;
+export default messagesReducer;
 

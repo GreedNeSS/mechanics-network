@@ -1,18 +1,18 @@
 import { profileAPI } from "../API/API";
 
-const WRITE_POST = 'WRITE_POST';
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
-export const writePost = (text) => ({
-	type: WRITE_POST,
-	text,
+export const setStatus = (status) => ({
+	type: SET_STATUS,
+	status,
 });
 export const setProfile = (profile) => ({
 	type: SET_PROFILE,
 	profile,
 });
-export const addPost = () => ({ type: ADD_POST });
+export const addPost = (newPostText) => ({ type: ADD_POST, newPostText });
 
 export const getProfile = (userId, ownId) => (dispatch) => {
 	let id = userId || ownId;
@@ -22,11 +22,29 @@ export const getProfile = (userId, ownId) => (dispatch) => {
 		});
 }
 
+export const getProfileStatus = (id) => (dispatch) => {
+	profileAPI.getStatus(id)
+		.then(response => {
+			dispatch(setStatus(response));
+		});
+}
+
+export const updateStatus = (status) => (dispatch) => {
+	profileAPI.setProfileStatus(status)
+		.then(response => {
+			if (response.resultCode === 0) {
+				dispatch(setStatus(status));
+			} else {
+				console.log(response.messages);
+			}
+		});
+}
+
 
 let initialState = {
-	profileId: 2,
+	profileId: 14637,
 	profile: null,
-	newTextPost: '',
+	profileStatus: '',
 	posts: [
 		{
 			id: 123,
@@ -43,14 +61,14 @@ let initialState = {
 	],
 };
 
-const profileReduser = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
 
 	switch (action.type) {
 		case ADD_POST:
 
 			let post = {
 				id: Math.round(Math.random() * 1000),
-				text: state.newTextPost
+				text: action.newPostText
 			}
 
 			return {
@@ -59,17 +77,17 @@ const profileReduser = (state = initialState, action) => {
 				posts: [...state.posts, post],
 			}
 
-		case WRITE_POST: {
-			return {
-				...state,
-				newTextPost: action.text
-			}
-		}
-
 		case SET_PROFILE: {
 			return {
 				...state,
 				profile: action.profile
+			}
+		}
+
+		case SET_STATUS: {
+			return {
+				...state,
+				profileStatus: action.status
 			}
 		}
 
@@ -79,5 +97,5 @@ const profileReduser = (state = initialState, action) => {
 
 }
 
-export default profileReduser;
+export default profileReducer;
 
