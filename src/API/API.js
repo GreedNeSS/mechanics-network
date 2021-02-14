@@ -33,7 +33,17 @@ export const authAPI = {
 	async getAuthMe() {
 		const response = await inctance.get('auth/me');
 		return response.data;
-	}
+	},
+
+	async logout() {
+		const response = await inctance.delete('auth/login');
+		return response.data;
+	},
+
+	async login(email, password, rememberMe = false) {
+		const response = await inctance.post('auth/login', { email, password, rememberMe });
+		return response.data;
+	},
 }
 
 export const profileAPI = {

@@ -1,6 +1,15 @@
+import { reset, clearFields } from "redux-form";
+
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
 export const addMessage = (text) => ({ type: ADD_MESSAGE, text });
+export const sendMessage = ({ newMessageText }) => (dispatch) => {
+	if (newMessageText) {
+		dispatch(addMessage(newMessageText));
+		dispatch(reset("messages"));
+		// dispatch(clearFields('messages', true, true, ...['newMessageText']));
+	}
+}
 
 
 let initialState = {

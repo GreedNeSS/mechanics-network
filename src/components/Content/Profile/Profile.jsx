@@ -17,7 +17,7 @@ const Profile = (props) => {
 			/>
 			<ProfilePosts
 				posts={props.posts}
-				addPost={props.addPost}
+				sendPost={props.sendPost}
 			/>
 		</div>
 	)

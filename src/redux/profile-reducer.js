@@ -1,18 +1,31 @@
+import { clearFields } from "redux-form";
 import { profileAPI } from "../API/API";
 
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const SET_PROFILE_ID = 'SET_PROFILE_ID';
 
 export const setStatus = (status) => ({
 	type: SET_STATUS,
 	status,
+});
+export const setProfileId = (profileId) => ({
+	type: SET_PROFILE_ID,
+	profileId,
 });
 export const setProfile = (profile) => ({
 	type: SET_PROFILE,
 	profile,
 });
 export const addPost = (newPostText) => ({ type: ADD_POST, newPostText });
+
+export const sendPost = ({ newPostText }) => (dispatch) => {
+	if (newPostText) {
+		dispatch(addPost(newPostText));
+		dispatch(clearFields('post', true, true, ...['newPostText']));
+	}
+}
 
 export const getProfile = (userId, ownId) => (dispatch) => {
 	let id = userId || ownId;
@@ -42,7 +55,7 @@ export const updateStatus = (status) => (dispatch) => {
 
 
 let initialState = {
-	profileId: 14637,
+	profileId: null,
 	profile: null,
 	profileStatus: '',
 	posts: [
@@ -81,6 +94,12 @@ const profileReducer = (state = initialState, action) => {
 			return {
 				...state,
 				profile: action.profile
+			}
+		}
+		case SET_PROFILE_ID: {
+			return {
+				...state,
+				profileId: action.profileId
 			}
 		}
 

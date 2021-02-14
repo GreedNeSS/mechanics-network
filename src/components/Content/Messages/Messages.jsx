@@ -11,7 +11,8 @@ function Messages(props) {
 			<Dialogs dialogs={props.dialogs} />
 			<MessageItems
 				messageItems={props.messageItems}
-				addMessage={props.addMessage} />
+				sendMessage={props.sendMessage}
+			/>
 		</div>
 	)
 }

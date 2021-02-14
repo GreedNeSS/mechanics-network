@@ -24,15 +24,10 @@ function MessageItems(props) {
 		)
 	})
 
-	let addMessageItem = (data) => {
-		props.addMessage(data.newMessageText);
-		clearFields('messages', true, true, ...['newMessageText']);
-	}
-
 	return (
 		<div className={css.MessageItems}>
 			{messages}
-			<MessagesForm onSubmit={addMessageItem} />
+			<MessagesForm onSubmit={props.sendMessage} />
 		</div>
 	)
 }

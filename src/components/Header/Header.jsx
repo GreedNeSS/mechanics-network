@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
 import logo from '../../img/logo.svg';
 import Clock from './Clock/Clock';
 import css from "./Header.module.css";
+import { ButtonLink, ButtonOnClick } from "../commons/CustomButton";
 
 
 const Header = (props) => {
@@ -14,9 +14,16 @@ const Header = (props) => {
 			</h1>
 			<div>
 				{
-					props.isAuth ?
-						props.login :
-						<NavLink to='/login'>Login</NavLink>
+					props.isAuth
+						? <div> {props.login}
+							<div>
+								<ButtonOnClick
+									buttonName='Выйти'
+									onClick={props.logout}
+								/>
+							</div>
+						</div>
+						: <ButtonLink to='/login' buttonName='login' />
 				}
 			</div>
 		</div>

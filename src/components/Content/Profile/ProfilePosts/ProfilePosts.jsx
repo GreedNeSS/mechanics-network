@@ -1,3 +1,4 @@
+import { clearFields } from "redux-form";
 import ProfilePostForm from "./ProfilePostForm/ProfilePostForm";
 
 const ProfilePosts = (props) => {
@@ -11,13 +12,9 @@ const ProfilePosts = (props) => {
 	});
 	posts.reverse();
 
-	const addPost = data => {
-		props.addPost(data.newPostText)
-	}
-
 	return (
 		<div>
-			<ProfilePostForm onSubmit={addPost} />
+			<ProfilePostForm onSubmit={props.sendPost} />
 			<div>
 				{posts}
 			</div>
