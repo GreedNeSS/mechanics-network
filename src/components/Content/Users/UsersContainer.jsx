@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
-import { setFollow, setUnfollow, getUsers } from "../../../redux/users-reducer";
+import { setFollow, setUnfollow, requestUsersPage } from "../../../redux/users-reducer";
+import { getUsers, getTotalCount, getCurrentPage, getPageSize, getIsFollowingProgress } from "../../../redux/users-selectors";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../../commons/Preloader";
@@ -11,12 +12,12 @@ class UsersContainer extends React.Component {
 
 	componentDidMount = () => {
 		if (this.props.users.length === 0) {
-			this.props.getUsers(this.props.currentPage, this.props.pageSize);
+			this.props.requestUsersPage(this.props.currentPage, this.props.pageSize);
 		}
 	}
 
 	onPageChange = (page) => {
-		this.props.getUsers(page, this.props.pageSize);
+		this.props.requestUsersPage(page, this.props.pageSize);
 	}
 
 	render() {
@@ -44,15 +45,15 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
 	return {
-		users: state.users.users,
-		totalCount: state.users.totalCount,
-		currentPage: state.users.currentPage,
-		pageSize: state.users.pageSize,
-		isFollowingProgress: state.users.isFollowingProgress,
+		users: getUsers(state),
+		totalCount: getTotalCount(state),
+		currentPage: getCurrentPage(state),
+		pageSize: getPageSize(state),
+		isFollowingProgress: getIsFollowingProgress(state),
 	}
 }
 
 export default compose(
-	connect(mapStateToProps, { setFollow, setUnfollow, getUsers }),
+	connect(mapStateToProps, { setFollow, setUnfollow, requestUsersPage }),
 	withAuthRedirect,
 )(UsersContainer);

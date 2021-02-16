@@ -92,4 +92,5 @@ h6 {
 	grid-template-rows: 100px 1fr;
 	min-height: 100vh;
 	width: 100%;
+	background-color: #3f434d;
 }
