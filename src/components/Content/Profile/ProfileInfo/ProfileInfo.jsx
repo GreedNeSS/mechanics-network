@@ -1,6 +1,8 @@
-import ProfileStatus from "./ProfileStatus"
+import ProfileStatus from "./ProfileStatus";
+import React from "react";
 
-const ProfileInfo = (props) => {
+const ProfileInfo = React.memo((props) => {
+
 	return (
 		<div>
 			<div>
@@ -14,6 +16,7 @@ const ProfileInfo = (props) => {
 			</div>
 			<div>
 				<ProfileStatus
+					userId={props.userId}
 					status={props.profileStatus}
 					updateStatus={props.updateStatus}
 				/>
@@ -28,6 +31,6 @@ const ProfileInfo = (props) => {
 			</div>
 		</div>
 	)
-}
+})
 
 export default ProfileInfo;

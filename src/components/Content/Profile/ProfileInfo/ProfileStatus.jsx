@@ -1,75 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-class ProfileStatus extends React.Component {
+const ProfileStatus = (props) => {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			isEdit: false,
-			newTextStatus: this.props.status,
-		};
-		this.activateEdit = this.activateEdit.bind(this);
-		this.deactivateEdit = this.deactivateEdit.bind(this);
-		this.changeStatus = this.changeStatus.bind(this);
-		this.setStatus = this.setStatus.bind(this);
-	}
+	let [isEdit, toggleEditMod] = useState(false);
+	let [newTextStatus, setNewStatus] = useState(props.status);
 
-	componentDidUpdate(prevProps) {
-		if (prevProps.status !== this.props.status) {
-			this.setState({
-				newTextStatus: this.props.status,
-			})
-		}
-	}
+	useEffect(() => {
+		setNewStatus(props.status);
+	}, [props.status]);
 
-	activateEdit() {
-		this.setState({
-			isEdit: true
-		})
-	}
+	const activateEdit = () => {
+		toggleEditMod(true);
+	};
 
-	deactivateEdit() {
-		this.setState({
-			isEdit: false,
-			newTextStatus: this.props.status,
-		})
-	}
+	const deactivateEdit = () => {
+		toggleEditMod(false);
+		setNewStatus(props.status);
+	};
 
-	changeStatus(e) {
-		console.log(this);
-		this.setState({
-			newTextStatus: e.target.value,
-		})
-	}
+	const changeStatus = (event) => {
+		setNewStatus(event.target.value);
+	};
 
-	setStatus(event) {
+	const setStatus = (event) => {
 		if (event.key === 'Enter') {
-			this.props.updateStatus(this.state.newTextStatus);
+			props.updateStatus(newTextStatus);
 			event.target.blur();
 			event.preventDefault();
 		}
-	}
+	};
 
-	render() {
+	if (props.userId) {
 		return (
 			<div>
-				{
-					this.state.isEdit
-						? <div >
-							Мой статус: <input autoFocus type="text"
-								onBlur={this.deactivateEdit}
-								value={this.state.newTextStatus}
-								onChange={this.changeStatus}
-								onKeyPress={this.setStatus}
-							/>
-						</div>
-						: <div onDoubleClick={this.activateEdit}>
-							Мой статус: {this.props.status}
-						</div>
-				}
+				Мой статус: {props.status}
 			</div>
 		)
 	}
+
+	return (
+		<div>
+			{
+				isEdit
+					? <div >
+						Мой статус: <input autoFocus type="text"
+							onBlur={deactivateEdit}
+							value={newTextStatus}
+							onChange={changeStatus}
+							onKeyPress={setStatus}
+						/>
+					</div>
+					: <div onDoubleClick={activateEdit}>
+						Мой статус: {props.status}
+					</div>
+			}
+		</div>
+	)
+
 }
 
 export default ProfileStatus;

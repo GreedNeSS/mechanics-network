@@ -8,24 +8,16 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
 
+ReactDOM.render(
+	<React.StrictMode>
+		<BrowserRouter>
+			<Provider store={store}>
+				<App />
+			</Provider>
+		</BrowserRouter>
+	</React.StrictMode>,
+	document.getElementById('root')
+);
 
-const rerenderEntireTree = () => {
-	ReactDOM.render(
-		<React.StrictMode>
-			<BrowserRouter>
-				<Provider store={store}>
-					<App />
-				</Provider>
-			</BrowserRouter>
-		</React.StrictMode>,
-		document.getElementById('root')
-	);
-}
-
-rerenderEntireTree();
-
-store.subscribe(() => {
-	rerenderEntireTree();
-});
 
 reportWebVitals();

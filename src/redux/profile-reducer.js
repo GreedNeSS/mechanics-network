@@ -35,7 +35,8 @@ export const getProfile = (userId, ownId) => (dispatch) => {
 		});
 }
 
-export const getProfileStatus = (id) => (dispatch) => {
+export const getProfileStatus = (userId, ownId) => (dispatch) => {
+	let id = userId || ownId;
 	profileAPI.getStatus(id)
 		.then(response => {
 			dispatch(setStatus(response));
@@ -80,7 +81,7 @@ const profileReducer = (state = initialState, action) => {
 		case ADD_POST:
 
 			let post = {
-				id: Math.round(Math.random() * 1000),
+				id: Math.round(Math.random() * 10000),
 				text: action.newPostText
 			}
 

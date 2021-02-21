@@ -1,8 +1,7 @@
-import { clearFields } from "redux-form";
 import ProfilePostForm from "./ProfilePostForm/ProfilePostForm";
+import React from "react";
 
-const ProfilePosts = (props) => {
-
+const ProfilePosts = React.memo((props) => {
 	let posts = props.posts.map((post) => {
 		return (
 			<div key={post.id} >
@@ -20,6 +19,6 @@ const ProfilePosts = (props) => {
 			</div>
 		</div>
 	)
-}
+})
 
 export default ProfilePosts;

@@ -9,9 +9,20 @@ import { compose } from "redux";
 
 class ProfilContainer extends React.Component {
 
-	componentDidMount = () => {
+	getPofileData = () => {
 		this.props.getProfile(this.props.match.params.userId, this.props.profileId);
-		this.props.getProfileStatus(this.props.profileId);
+		this.props.getProfileStatus(this.props.match.params.userId, this.props.profileId);
+	}
+
+	componentDidMount = () => {
+		this.getPofileData();
+	}
+
+	componentDidUpdate = (prevProps) => {
+		const userId = this.props.match.params.userId;
+		if ((prevProps.match.params.userId !== userId) && !userId) {
+			this.getPofileData();
+		}
 	}
 
 	render() {
