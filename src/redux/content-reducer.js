@@ -4,7 +4,7 @@ const SET_INITIALIZED = 'SET_INITIALIZED';
 
 export const setInitialized = () => ({ type: SET_INITIALIZED });
 
-export const initializing = () => dispatch => {
+export const initializing = () => (dispatch) => {
 	Promise.all([dispatch(authUser())])
 		.then(() => dispatch(setInitialized()));
 }

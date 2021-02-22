@@ -10,51 +10,37 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const ButtonSubmit = (props) => <Butt buttonName={props.buttonName} />;
+// ! Кастомизация кнопок на будующее
 
-export const ButtonOnClick = (props) => <Butt buttonName={props.buttonName} onClick={props.onClick} />;
+// const useStyles = makeStyles((theme) => ({
+// 	button: {
+// 		margin: theme.spacing(1),
+// 		backgroundColor: 'yellow',
+// 		"&:hover": {
+// 			backgroundColor: 'red',
+// 		}
+// 	},
+// }));
 
-export const ButtonLink = (props) => {
+
+const ButtonCustom = (buttonName, type, props = {}) => {
 	const classes = useStyles();
 	return (
 		<Button
+			{...props}
 			color="primary"
 			variant="contained"
 			className={classes.button}
-			type='button'
-			component={NavLink}
-			to={props.to}
+			type={type}
 		>
-			{props.buttonName}
+			{buttonName}
 		</Button>
 	)
 }
 
 
-const Butt = (props) => {
-	const classes = useStyles();
-	if (props.onClick) {
-		return (
-			<Button
-				onClick={props.onClick}
-				color="primary"
-				variant="contained"
-				className={classes.button}
-				type='button'
-			>
-				{props.buttonName}
-			</Button>
-		)
-	} else {
-		return (
-			<Button
-				color="primary"
-				variant="contained"
-				className={classes.button}
-				type='submit'
-			>
-				{props.buttonName}
-			</Button>
-		)
-	}
-}
+export const ButtonLink = (props) => ButtonCustom(props.buttonName, 'button', { component: NavLink, to: props.to });
+
+export const ButtonSubmit = (props) => ButtonCustom(props.buttonName, 'submit');
+
+export const ButtonOnClick = (props) => ButtonCustom(props.buttonName, 'button', { onClick: props.onClick });

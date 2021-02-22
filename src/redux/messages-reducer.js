@@ -1,4 +1,4 @@
-import { reset, clearFields } from "redux-form";
+import { reset } from "redux-form";
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
@@ -7,7 +7,6 @@ export const sendMessage = ({ newMessageText }) => (dispatch) => {
 	if (newMessageText) {
 		dispatch(addMessage(newMessageText));
 		dispatch(reset("messages"));
-		// dispatch(clearFields('messages', true, true, ...['newMessageText']));
 	}
 }
 

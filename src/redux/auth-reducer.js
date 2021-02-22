@@ -13,46 +13,40 @@ export const setAuthUserData = (id, email, login, isAuth) => {
 	})
 }
 
-export const authUser = () => (dispatch) => {
-	return authAPI.getAuthMe()
-		.then(response => {
-			if (response.resultCode === 0) {
-				let { id, email, login } = response.data;
-				dispatch(setProfileId(id));
-				dispatch(setAuthUserData(id, email, login, true));
-			} else {
-				console.log(response.messages);
-			}
-		})
+export const authUser = () => async (dispatch) => {
+	const response = await authAPI.getAuthMe();
+	if (response.resultCode === 0) {
+		let { id, email, login } = response.data;
+		dispatch(setProfileId(id));
+		dispatch(setAuthUserData(id, email, login, true));
+	} else {
+		console.log(response.messages);
+	}
 }
 
-export const login = ({ email, password, rememeberMe }) => (dispatch) => {
+export const login = ({ email, password, rememeberMe }) => async (dispatch) => {
 	dispatch(toggleIsLoading(true));
-	authAPI.login(email, password, rememeberMe)
-		.then(response => {
-			if (response.resultCode === 0) {
-				dispatch(authUser());
-			} else {
-				const action = stopSubmit('login', {
-					email: response.messages,
-					password: response.messages
-				});
-				dispatch(action);
-				console.log(response.messages);
-			}
-			dispatch(toggleIsLoading(false));
-		})
+	const response = await authAPI.login(email, password, rememeberMe)
+	if (response.resultCode === 0) {
+		dispatch(authUser());
+	} else {
+		const action = stopSubmit('login', {
+			email: response.messages,
+			password: response.messages
+		});
+		dispatch(action);
+		console.log(response.messages);
+	}
+	dispatch(toggleIsLoading(false));
 }
 
-export const logout = () => (dispatch) => {
-	authAPI.logout()
-		.then(response => {
-			if (response.resultCode === 0) {
-				dispatch(setAuthUserData(null, null, null, false));
-			} else {
-				console.log(response.messages);
-			}
-		})
+export const logout = () => async (dispatch) => {
+	const response = await authAPI.logout()
+	if (response.resultCode === 0) {
+		dispatch(setAuthUserData(null, null, null, false));
+	} else {
+		console.log(response.messages);
+	}
 }
 
 

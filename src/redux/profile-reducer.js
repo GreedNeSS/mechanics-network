@@ -27,31 +27,25 @@ export const sendPost = ({ newPostText }) => (dispatch) => {
 	}
 }
 
-export const getProfile = (userId, ownId) => (dispatch) => {
+export const getProfile = (userId, ownId) => async (dispatch) => {
 	let id = userId || ownId;
-	profileAPI.getProfile(id)
-		.then(response => {
-			dispatch(setProfile(response));
-		});
+	let response = await profileAPI.getProfile(id);
+	dispatch(setProfile(response));
 }
 
-export const getProfileStatus = (userId, ownId) => (dispatch) => {
+export const getProfileStatus = (userId, ownId) => async (dispatch) => {
 	let id = userId || ownId;
-	profileAPI.getStatus(id)
-		.then(response => {
-			dispatch(setStatus(response));
-		});
+	let response = await profileAPI.getStatus(id);
+	dispatch(setStatus(response));
 }
 
-export const updateStatus = (status) => (dispatch) => {
-	profileAPI.setProfileStatus(status)
-		.then(response => {
-			if (response.resultCode === 0) {
-				dispatch(setStatus(status));
-			} else {
-				console.log(response.messages);
-			}
-		});
+export const updateStatus = (status) => async (dispatch) => {
+	let response = await profileAPI.setProfileStatus(status);
+	if (response.resultCode === 0) {
+		dispatch(setStatus(status));
+	} else {
+		console.log(response.messages);
+	}
 }
 
 
