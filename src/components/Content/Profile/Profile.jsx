@@ -15,6 +15,8 @@ const Profile = (props) => {
 				profile={props.profile}
 				profileStatus={props.profileStatus}
 				updateStatus={props.updateStatus}
+				uploadAvatar={props.uploadAvatar}
+				editProfile={props.editProfile}
 			/>
 			{!props.match.params.userId
 				? <ProfilePosts posts={props.posts} sendPost={props.sendPost} />

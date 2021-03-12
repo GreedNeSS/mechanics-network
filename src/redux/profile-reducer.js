@@ -5,6 +5,7 @@ const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const SET_PROFILE_ID = 'SET_PROFILE_ID';
+const SET_PROFILE_AVATAR = 'SET_PROFILE_AVATAR';
 
 export const setStatus = (status) => ({
 	type: SET_STATUS,
@@ -19,6 +20,7 @@ export const setProfile = (profile) => ({
 	profile,
 });
 export const addPost = (newPostText) => ({ type: ADD_POST, newPostText });
+export const setProfileAvatar = (photo) => ({ type: SET_PROFILE_AVATAR, photo });
 
 export const sendPost = ({ newPostText }) => (dispatch) => {
 	if (newPostText) {
@@ -48,11 +50,32 @@ export const updateStatus = (status) => async (dispatch) => {
 	}
 }
 
+export const uploadAvatar = (photo) => async (dispatch) => {
+	let response = await profileAPI.setProfileAvatarSuccess(photo);
+	if (response.resultCode === 0) {
+		dispatch(setProfileAvatar(response.data.photos));
+	} else {
+		console.log(response.messages);
+	}
+}
+
+export const editProfile = (data) => async (dispatch, getState) => {
+	let id = getState().auth.id;
+	let response = await profileAPI.setProfileInfo(data);
+	if (response.resultCode === 0) {
+		await dispatch(getProfile(null, id));
+	} else {
+		console.log(response.messages);
+		return Promise.reject(response.messages);
+	}
+}
+
 
 let initialState = {
 	profileId: null,
 	profile: null,
 	profileStatus: '',
+	photo: '',
 	posts: [
 		{
 			id: 123,
@@ -91,6 +114,17 @@ const profileReducer = (state = initialState, action) => {
 				profile: action.profile
 			}
 		}
+
+		case SET_PROFILE_AVATAR: {
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					photos: action.photo
+				}
+			}
+		}
+
 		case SET_PROFILE_ID: {
 			return {
 				...state,

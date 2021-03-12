@@ -3,29 +3,29 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
 
-export function CustomInput({
-	input,
-	type,
-	placeholder,
-	meta: { touched, error, warning },
-	classes,
-	id,
-}) {
+export function CustomInput(props) {
+	let {
+		input,
+		type,
+		placeholder,
+		meta: { touched, error, warning },
+		classes,
+		id,
+	} = props;
 	return (
-		<TextField id="outlined-basic"
+		<TextField
 			label={placeholder}
 			variant="outlined"
 			type={type}
 			classes={{ root: css.text }}
 			error={error ? true : false}
 			id={id}
-			// id="standard-error-helper-text"
 			helperText={(touched && error) ? error : null}
 			{...input}
-			defaultValue="color"
 			className={classes.root}
 			InputProps={{
 				className: classes.input
-			}} />
+			}}
+		/>
 	);
 }

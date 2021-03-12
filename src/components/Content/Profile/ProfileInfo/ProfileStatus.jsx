@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import css from "./ProfileInfo.module.css";
+
 
 const ProfileStatus = (props) => {
 
@@ -32,9 +34,7 @@ const ProfileStatus = (props) => {
 
 	if (props.userId) {
 		return (
-			<div>
-				Мой статус: {props.status}
-			</div>
+			<span className={css.title}>Статус: {props.status}</span>
 		)
 	}
 
@@ -43,16 +43,17 @@ const ProfileStatus = (props) => {
 			{
 				isEdit
 					? <div >
-						Мой статус: <input autoFocus type="text"
+						<span className={css.title}>Мой статус: </span>
+						<input autoFocus type="text"
 							onBlur={deactivateEdit}
 							value={newTextStatus}
 							onChange={changeStatus}
 							onKeyPress={setStatus}
 						/>
 					</div>
-					: <div onDoubleClick={activateEdit}>
+					: <span onDoubleClick={activateEdit} className={css.title}>
 						Мой статус: {props.status}
-					</div>
+					</span>
 			}
 		</div>
 	)

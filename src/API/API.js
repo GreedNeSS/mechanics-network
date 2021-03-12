@@ -62,4 +62,20 @@ export const profileAPI = {
 		const response = await inctance.put('profile/status/', { status });
 		return response.data;
 	},
+
+	async setProfileInfo(data) {
+		const response = await inctance.put('profile', data);
+		return response.data;
+	},
+
+	async setProfileAvatarSuccess(photo) {
+		let formData = new FormData();
+		formData.append('image', photo);
+		const response = await inctance.put('/profile/photo', formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			}
+		});
+		return response.data;
+	},
 }
