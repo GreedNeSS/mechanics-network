@@ -16,7 +16,7 @@ class Login extends React.Component {
 					null
 				}
 				<h1>LOGIN!</h1>
-				<LoginForm onSubmit={this.props.login} />
+				<LoginForm onSubmit={this.props.login} captcha={this.props.captcha} />
 			</div>
 		)
 	}
@@ -24,7 +24,8 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		isLoading: state.auth.isLoading
+		isLoading: state.auth.isLoading,
+		captcha: state.auth.captcha
 	}
 }
 

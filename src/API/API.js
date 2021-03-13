@@ -40,8 +40,13 @@ export const authAPI = {
 		return response.data;
 	},
 
-	async login(email, password, rememberMe = false) {
-		const response = await inctance.post('auth/login', { email, password, rememberMe });
+	async login(email, password, rememberMe = false, captcha) {
+		const response = await inctance.post('auth/login', { email, password, rememberMe, captcha });
+		return response.data;
+	},
+
+	async getCaptchaUrl() {
+		const response = await inctance.get('security/get-captcha-url');
 		return response.data;
 	},
 }

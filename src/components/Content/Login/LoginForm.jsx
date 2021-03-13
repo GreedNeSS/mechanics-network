@@ -25,7 +25,12 @@ let LoginForm = (props) => {
 			<div className={css.formItem}>
 				<ButtonSubmit buttonName='Авторизация' />
 			</div>
-
+			{props.captcha && <div>
+				<img src={props.captcha} alt="captcha" />
+				<Field name='captcha' placeholder='Введите код с картинки'
+					validate={[required]} id='3'
+					type='text' component={CustomizedInputs} />
+			</div>}
 		</form>
 	)
 }

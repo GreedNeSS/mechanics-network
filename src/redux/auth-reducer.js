@@ -4,8 +4,10 @@ import { setProfileId } from "./profile-reducer";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING';
+const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
 
 export const toggleIsLoading = (isLoading) => ({ type: TOGGLE_IS_LOADING, isLoading });
+export const setCaptchaUrl = (captcha) => ({ type: SET_CAPTCHA_URL, captcha });
 export const setAuthUserData = (id, email, login, isAuth) => {
 	return ({
 		type: SET_USER_DATA,
@@ -24,12 +26,17 @@ export const authUser = () => async (dispatch) => {
 	}
 }
 
-export const login = ({ email, password, rememeberMe }) => async (dispatch) => {
+export const login = ({ email, password, rememeberMe, captcha = null }) => async (dispatch) => {
 	dispatch(toggleIsLoading(true));
-	const response = await authAPI.login(email, password, rememeberMe)
+	const response = await authAPI.login(email, password, rememeberMe, captcha)
 	if (response.resultCode === 0) {
 		dispatch(authUser());
+		dispatch(setCaptchaUrl(null));
 	} else {
+		if (response.resultCode === 10) {
+			const response = await authAPI.getCaptchaUrl();
+			dispatch(setCaptchaUrl(response.url));
+		}
 		const action = stopSubmit('login', {
 			email: response.messages,
 			password: response.messages
@@ -57,6 +64,7 @@ let initialState = {
 	login: null,
 	isAuth: false,
 	isLoading: false,
+	captcha: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -72,6 +80,12 @@ const authReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: action.isLoading,
+			}
+
+		case SET_CAPTCHA_URL:
+			return {
+				...state,
+				captcha: action.captcha,
 			}
 
 		default:
